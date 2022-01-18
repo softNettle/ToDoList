@@ -12,9 +12,9 @@ using namespace std;
 void BaseInfo(string* arr[]) {
 
 	string baseArr[3][5]{
-		{"Do something", "High", "I need to do difficult task", "10/10/2022", "12:00"},
-		{"Do something", "Low", "I need to do not so difficult task", "12/09/2022", "09:30"},
-		{"Do something", "Medium", "I need to do the task", "15/04/2022", "11:00"},
+		{"Do smth1", "High", "I need to do difficult task", "10/10/2022", "12:00"},
+		{"Do smth2", "Low", "I need to do not so difficult task", "12/09/2022", "09:30"},
+		{"Do smth3", "Medium", "I need to do the task", "15/04/2022", "11:00"},
 	};
 
 	for (int i = 0; i < 3; i++)
@@ -57,23 +57,23 @@ void PrintArr(int number, string* arr[], int cols) {
 void TypeLine(string arr[]) {
 
 	cout << "Enter task name: ";
-	cin >> arr[0];
+	getline(cin, arr[0]);
 	cout << endl;
 
 	cout << "Enter task priority: ";
-	cin >> arr[1];
+	getline(cin, arr[1]);
 	cout << endl;
 
 	cout << "Enter task description: ";
-	cin >> arr[2];
+	getline(cin, arr[2]);
 	cout << endl;
 
 	cout << "Enter task date: ";
-	cin >> arr[3];
+	getline(cin, arr[3]);
 	cout << endl;
 
 	cout << "Enter task time: ";
-	cin >> arr[4];
+	getline(cin, arr[4]);
 	cout << endl;
 }
 
@@ -179,13 +179,66 @@ void EditTask(string**& arr, string* linearr, int rows, const int cols) {
 
 
 	arr = newArray;
-
-
-
-
 }
 
+//поиск по имени
+void SearchName(string* arr[], int rows, int cols) {
+	string search;
+	cout << "Type the name of task: ";
+	getline(cin, search);
+	for (int i = 0; i < rows; i++)
+	{
+		if (arr[i][0] == search) {
+			cout << "Result:" << endl;
+			PrintArr(i+1, arr, cols);
+		}
+	}
+}
 
+//поиск по приоритету
+void SearchPrior(string* arr[], int rows, int cols) {
+	int num;
+	string search;
+	bool wrong;
+	do {
+		wrong = false;
+		cout << "Chose the priority of task: \nHigh: 1\nMedium: 2\nLow: 3\n";
+		cin >> num;
+		switch (num)
+		{
+		case 1:
+			search = "High";			
+			break;
+		case 2:
+			search = "Medium";
+			break;
+		case 3:
+			search = "Low";
+			break;
+
+		default:
+			wrong = true;
+			cout << "Wrong value. Please, try again.";
+			break;
+		}
+	}
+		while (wrong);
+	search = tolower(search[0]);
+	cout << search;
+	
+	
+	
+	/*
+	getline(cin, search);
+	for (int i = 0; i < rows; i++)
+	{
+		if (arr[i][0] == search) {
+			cout << "Result:" << endl;
+			PrintArr(i + 1, arr, cols);
+		}
+	}
+	*/
+}
 //////////////////////////////////////////////////////////////////////
 
 
@@ -208,9 +261,12 @@ int main()
 	PrintArr(tdl, rows, cols);
 	//PushBack(tdl, lineArray, rows, cols);
 	//RemoveLine(tdl, rows, cols);
-	EditTask(tdl, lineArray, rows, cols);
-	PrintArr(tdl, rows, cols);
-
+	//EditTask(tdl, lineArray, rows, cols);
+	
+	//PrintArr(tdl, rows, cols);
+	//SearchName(tdl, rows, cols);
+	SearchPrior(tdl, rows, cols);
+	
 
 
 
