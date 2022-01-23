@@ -38,7 +38,7 @@ void PrintArr(string* arr[], int rows, int cols) {
 		{
 			cout << arrTitle[j] << ": " << arr[i][j] << "\n";
 		}
-		cout << "***" << endl;
+		cout << "***\n\n";
 	}
 }
 
@@ -126,15 +126,20 @@ void RemoveLine(string**& arr, int& rows, const int cols) {
 	for (int i = 0; i < rows; i++) {
 		newArray[i] = new string[cols];
 	}
-
+	
 	for (int i = 0; i < rows; i++)
 	{
-		if (i != number - 1) {
-			for (int j = 0; j < cols; j++)
-			{
+
+		for (int j = 0; j < cols; j++)
+		{
+			if (i >= number - 1) {
+				newArray[i][j] = arr[i + 1][j];
+			}
+			else {
 				newArray[i][j] = arr[i][j];
 			}
 		}
+
 	}
 
 	for (int i = 0; i < rows; i++)
@@ -196,7 +201,7 @@ void SearchName(string* arr[], int rows, int cols) {
 			matches++;
 		}
 	}
-	cout << "Matches: " << matches;
+	cout << "Matches: " << matches << endl;
 
 }
 
@@ -211,7 +216,7 @@ void SearchPrior(string* arr[], int rows, int cols) {
 	{
 		cout << "Chose the priority of task: \nHigh: 1\nMedium: 2\nLow: 3\n";
 		cin >> num;
-		if (num > 0 && num <= 3) {			
+		if (num > 0 && num <= 3) {
 			int matches = 0;
 			for (int i = 0; i < rows; i++)
 			{
@@ -219,9 +224,9 @@ void SearchPrior(string* arr[], int rows, int cols) {
 					cout << endl;
 					PrintArr(i + 1, arr, cols);
 					matches++;
-				}				
+				}
 			}
-			cout << "Matches: " << matches;
+			cout << "Matches: " << matches << endl;
 
 			isWrong = false;
 		}
@@ -229,22 +234,20 @@ void SearchPrior(string* arr[], int rows, int cols) {
 			cout << "Wrong value. Try again\n";
 			isWrong = true;
 		}
-		
-	} 
-	while (isWrong == true);
 
+	} while (isWrong == true);
+}
 
-
-		/*
-		getline(cin, search);
-		for (int i = 0; i < rows; i++)
-		{
-			if (arr[i][0] == search) {
-				cout << "Result:" << endl;
-				PrintArr(i + 1, arr, cols);
-			}
-		}
-		*/
+//функция для вывода вопроса о выходе
+int yesNo() {
+	int res;
+	cout << "Whould you like to make another request? \n1 - Yes\n0 - No\n";
+	do {
+		cin >> res;
+		cout << endl;
+		if (res != 0 && res != 1) cout << "\"0\" or \"1\" only\n";
+	} while (res != 0 && res != 1);
+	return res;
 }
 //////////////////////////////////////////////////////////////////////
 
@@ -263,15 +266,71 @@ int main()
 		tdl[i] = new string[cols];
 	}
 
-
 	BaseInfo(tdl);
-	PrintArr(tdl, rows, cols);
+
+	//Основной интерфейс программы
+	
+	cout << "Hello, i'm your To Do List.\n";
+	int num;
+	bool goOn = 1;
+	while (goOn) {
+		cout << "Choose what you want to do with your tasks:" << endl;
+		cout << "1 - Display your tasks\n";
+		cout << "2 - Add new task\n";
+		cout << "3 - Remove task\n";
+		cout << "4 - Edit task\n";
+		cout << "5 - Search task by name\n";
+		cout << "6 - Search task by priority\n";
+		cout << "0 - Exit\n";
+		cin >> num;
+		cout << endl;
+		switch (num)
+		{
+		case 1:
+			PrintArr(tdl, rows, cols);
+			goOn = yesNo();
+			break;
+		case 2:
+			PushBack(tdl, lineArray, rows, cols);
+			goOn = yesNo();
+			break;
+		case 3:
+			RemoveLine(tdl, rows, cols);
+			goOn = yesNo();
+			break;
+		case 4:
+			EditTask(tdl, lineArray, rows, cols);
+			goOn = yesNo();
+			break;
+		case 5:
+			SearchName(tdl, rows, cols);
+			goOn = yesNo();
+			break;
+		case 6:
+			SearchPrior(tdl, rows, cols);
+			goOn = yesNo();
+			break;
+		case 0:
+			goOn = 0;
+			break;
+		default:
+			cout << "Bad request\n";
+			break;
+		}
+
+	}
+
+	
+
+	//PrintArr(tdl, rows, cols);
+	//RemoveLine(tdl, rows, cols);
+	//PrintArr(tdl, rows, cols);
+	//PrintArr(tdl, rows, cols);
 	//PushBack(tdl, lineArray, rows, cols);
 	//RemoveLine(tdl, rows, cols);
 	//EditTask(tdl, lineArray, rows, cols);
 
-	//PrintArr(tdl, rows, cols);
-	SearchName(tdl, rows, cols);
+	//SearchName(tdl, rows, cols);
 	//SearchPrior(tdl, rows, cols);
 
 
