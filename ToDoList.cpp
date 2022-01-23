@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
 using namespace std;
 
 
@@ -186,58 +187,64 @@ void SearchName(string* arr[], int rows, int cols) {
 	string search;
 	cout << "Type the name of task: ";
 	getline(cin, search);
+	int matches = 0;
 	for (int i = 0; i < rows; i++)
 	{
 		if (arr[i][0] == search) {
 			cout << "Result:" << endl;
-			PrintArr(i+1, arr, cols);
+			PrintArr(i + 1, arr, cols);
+			matches++;
 		}
 	}
+	cout << "Matches: " << matches;
+
 }
 
 //поиск по приоритету
 void SearchPrior(string* arr[], int rows, int cols) {
 	int num;
 	string search;
-	bool wrong;
-	do {
-		wrong = false;
+	string priorities[3]{ "High", "Medium", "Low" };
+
+	bool isWrong = false;
+	do
+	{
 		cout << "Chose the priority of task: \nHigh: 1\nMedium: 2\nLow: 3\n";
 		cin >> num;
-		switch (num)
-		{
-		case 1:
-			search = "High";			
-			break;
-		case 2:
-			search = "Medium";
-			break;
-		case 3:
-			search = "Low";
-			break;
+		if (num > 0 && num <= 3) {			
+			int matches = 0;
+			for (int i = 0; i < rows; i++)
+			{
+				if (arr[i][1] == priorities[num - 1]) {
+					cout << endl;
+					PrintArr(i + 1, arr, cols);
+					matches++;
+				}				
+			}
+			cout << "Matches: " << matches;
 
-		default:
-			wrong = true;
-			cout << "Wrong value. Please, try again.";
-			break;
+			isWrong = false;
 		}
-	}
-		while (wrong);
-	search = tolower(search[0]);
-	cout << search;
-	
-	
-	
-	/*
-	getline(cin, search);
-	for (int i = 0; i < rows; i++)
-	{
-		if (arr[i][0] == search) {
-			cout << "Result:" << endl;
-			PrintArr(i + 1, arr, cols);
+		else {
+			cout << "Wrong value. Try again\n";
+			isWrong = true;
 		}
-	}
-	*/
+		
+	} 
+	while (isWrong == true);
+
+
+
+		/*
+		getline(cin, search);
+		for (int i = 0; i < rows; i++)
+		{
+			if (arr[i][0] == search) {
+				cout << "Result:" << endl;
+				PrintArr(i + 1, arr, cols);
+			}
+		}
+		*/
 }
 //////////////////////////////////////////////////////////////////////
 
@@ -262,11 +269,11 @@ int main()
 	//PushBack(tdl, lineArray, rows, cols);
 	//RemoveLine(tdl, rows, cols);
 	//EditTask(tdl, lineArray, rows, cols);
-	
+
 	//PrintArr(tdl, rows, cols);
-	//SearchName(tdl, rows, cols);
-	SearchPrior(tdl, rows, cols);
-	
+	SearchName(tdl, rows, cols);
+	//SearchPrior(tdl, rows, cols);
+
 
 
 
