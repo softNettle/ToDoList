@@ -190,7 +190,7 @@ void EditTask(string**& arr, string* linearr, int rows, const int cols) {
 //поиск по имени
 void SearchName(string* arr[], int rows, int cols) {
 	string search;
-	cout << "Type the name of task: ";
+	cout << "Type the name of task: \n";
 	getline(cin, search);
 	int matches = 0;
 	for (int i = 0; i < rows; i++)
@@ -243,7 +243,8 @@ int yesNo() {
 	int res;
 	cout << "Whould you like to make another request? \n1 - Yes\n0 - No\n";
 	do {
-		cin >> res;
+		cin >> res;	
+		cin.ignore();
 		cout << endl;
 		if (res != 0 && res != 1) cout << "\"0\" or \"1\" only\n";
 	} while (res != 0 && res != 1);
@@ -282,7 +283,8 @@ int main()
 		cout << "5 - Search task by name\n";
 		cout << "6 - Search task by priority\n";
 		cout << "0 - Exit\n";
-		cin >> num;
+		cin >> num;	
+		cin.ignore();
 		cout << endl;
 		switch (num)
 		{
@@ -325,8 +327,9 @@ int main()
 	//PrintArr(tdl, rows, cols);
 	//RemoveLine(tdl, rows, cols);
 	//PrintArr(tdl, rows, cols);
-	//PrintArr(tdl, rows, cols);
 	//PushBack(tdl, lineArray, rows, cols);
+	//PrintArr(tdl, rows, cols);
+	
 	//RemoveLine(tdl, rows, cols);
 	//EditTask(tdl, lineArray, rows, cols);
 
