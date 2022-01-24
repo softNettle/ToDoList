@@ -326,13 +326,8 @@ int main()
 
 	//PrintArr(tdl, rows, cols);
 	//RemoveLine(tdl, rows, cols);
-	//PrintArr(tdl, rows, cols);
-	//PushBack(tdl, lineArray, rows, cols);
-	//PrintArr(tdl, rows, cols);
-	
-	//RemoveLine(tdl, rows, cols);
+	//PushBack(tdl, lineArray, rows, cols);	
 	//EditTask(tdl, lineArray, rows, cols);
-
 	//SearchName(tdl, rows, cols);
 	//SearchPrior(tdl, rows, cols);
 
