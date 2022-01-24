@@ -1,6 +1,4 @@
-﻿// ToDoList.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
+﻿
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -333,24 +331,11 @@ int main()
 
 
 
-
-
-
-
-
-
-
-
-
-
 	for (int i = 0; i < rows; i++)
 	{
 		delete[] tdl[i];
 	}
 	delete[] tdl;
-
-
-
 
 }
 
