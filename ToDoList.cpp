@@ -42,7 +42,7 @@ void PrintArr(string* arr[], int rows, int cols) {
 
 //Перегрузка функции вывода для отображения одной задачи
 void PrintArr(int number, string* arr[], int cols) {
-	string arrTitle[]{ "Name", "Priority", "Description", "date", "time" };
+	string arrTitle[]{ "Name", "Priority", "Description", "Date", "Time" };
 	cout << "Task " << number << ":\n";
 	for (int i = 0; i < cols; i++)
 	{
@@ -55,6 +55,15 @@ void PrintArr(int number, string* arr[], int cols) {
 //функция ввода записи с клавиатуры
 void TypeLine(string arr[]) {
 
+	string arrTitle[]{ "name", "priority", "description", "date", "time" };
+	
+	for (int i = 0; i < 5; i++)		
+	{
+		cout << "Enter task " << arrTitle[i] << ": ";
+		getline(cin, arr[0]);
+		cout << endl;
+	}
+	/*
 	cout << "Enter task name: ";
 	getline(cin, arr[0]);
 	cout << endl;
@@ -74,6 +83,7 @@ void TypeLine(string arr[]) {
 	cout << "Enter task time: ";
 	getline(cin, arr[4]);
 	cout << endl;
+	*/
 }
 
 //функция добавления новой записи в конец массива
