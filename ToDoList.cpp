@@ -25,6 +25,17 @@ void BaseInfo(string* arr[]) {
 	}
 }
 
+//Новая версия заполнения массива тестовыми данными
+void BaseInfo(string**& arr, string* linearr, int& rows, const int cols) {
+	string baseArr[3][5]{
+		{"Do smth1", "High", "I need to do difficult task", "10/10/2022", "12:00"},
+		{"Do smth2", "Low", "I need to do not so difficult task", "12/09/2022", "09:30"},
+		{"Do smth3", "Medium", "I need to do the task", "15/04/2022", "11:00"},
+	};
+
+
+}
+
 //Вывод массива на экран
 void PrintArr(string* arr[], int rows, int cols) {
 	string arrTitle[]{ "Name", "Priority", "Description", "date", "time" };
@@ -63,27 +74,7 @@ void TypeLine(string arr[]) {
 		getline(cin, arr[0]);
 		cout << endl;
 	}
-	/*
-	cout << "Enter task name: ";
-	getline(cin, arr[0]);
-	cout << endl;
-
-	cout << "Enter task priority: ";
-	getline(cin, arr[1]);
-	cout << endl;
-
-	cout << "Enter task description: ";
-	getline(cin, arr[2]);
-	cout << endl;
-
-	cout << "Enter task date: ";
-	getline(cin, arr[3]);
-	cout << endl;
-
-	cout << "Enter task time: ";
-	getline(cin, arr[4]);
-	cout << endl;
-	*/
+	
 }
 
 //функция добавления новой записи в конец массива
@@ -97,11 +88,13 @@ void PushBack(string**& arr, string* linearr, int& rows, const int cols) {
 	}
 
 	//Заполнение временного массива уже имеющимися данными
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
+	if (rows > 0) {
+		for (int i = 0; i < rows; i++)
 		{
-			newArray[i][j] = arr[i][j];
+			for (int j = 0; j < cols; j++)
+			{
+				newArray[i][j] = arr[i][j];
+			}
 		}
 	}
 
@@ -265,7 +258,7 @@ int yesNo() {
 int main()
 {
 	cout << "***To Do List***" << endl;
-	int rows = 3;
+	int rows = 0;
 	const int cols = 5;
 	string lineArray[cols];
 
@@ -275,7 +268,7 @@ int main()
 		tdl[i] = new string[cols];
 	}
 
-	BaseInfo(tdl);
+	
 
 	//Основной интерфейс программы
 	
